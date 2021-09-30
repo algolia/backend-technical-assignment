@@ -65,7 +65,7 @@ The new service(s) must fit in the following architecture:
 Some additional information:
 * The traffic expected is up to 100K searches and 10K click events per day per customer application
 * Each click is tied to a specific search in the log with a `queryID`
-* Click events events are accepted by the API if they are reiceved up to 15 minutes after the search
+* Click events are accepted by the API if they are reiceved up to 15 minutes after the search
 * Customer may request up to 3 month of timerange in the Analytics
 
 Describe the eventual databases that you would setup and their content, the eventual packaged services you would use, and the different processes you would create. For each logical brick, explain their goal and how do they communicate together.
