@@ -50,6 +50,7 @@ We'll evaluate:
 ### Part 2: System design
 
 Describe briefly how you would build at scale and in the cloud (preferably with GCP) an API to power a simplified page of our Search Analytics:
+
 <img src="analytics-ui-example.png" alt="Simplified UI" width="400"/>
 
 For a given timerange, you must be able to return:
@@ -58,6 +59,7 @@ For a given timerange, you must be able to return:
 * Their CTR (Click through rate)
 
 The new service(s) must fit in the following architecture:
+
 ![Architecture](architecture.png)
 
 Some additional information:
