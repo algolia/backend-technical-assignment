@@ -50,7 +50,7 @@ We'll evaluate:
 ### Part 2: System design
 
 Describe briefly how you would build at scale and in the cloud (preferably with GCP) an API to power a simplified page of our Search Analytics:
-![Simplified UI](analytics-ui-example.png)
+<img src="analytics-ui-example.png" alt="Simplified UI" width="400"/>
 
 For a given timerange, you must be able to return:
 * The top 1000 top popular searches
