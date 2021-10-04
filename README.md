@@ -73,8 +73,8 @@ Describe the eventual databases that you would setup and their content, the even
 #### Evaluation Criteria
 
 * Please push it along with your code on GitHub repository or in the archive
-* Stay concise (maximum 1 page)
 * Include at least a schema with a global overview of your architecture
+* Stay concise (maximum 1 page of text, excluding the eventual diagrams)
 
 We'll evaluate:
 
