@@ -10,46 +10,20 @@ Each line contains a timestamp and a query separated by a tab.
 
 ## Instructions
 
-Build a small application exposing the following endpoints through a REST API:
+### Part 1: Code
+
+Build a small application exposing the following endpoint through a REST API:
 
  * `GET /1/queries/count/<DATE_PREFIX>`: returns a JSON object specifying the number of distinct queries that have been done during a specific time range
- * `GET /1/queries/popular/<DATE_PREFIX>?size=<SIZE>`: returns a JSON object listing the top `<SIZE>` popular queries that have been done during a specific time range
 
-
-### Examples
+#### Examples
 
  * Distinct queries done in 2015: `GET /1/queries/count/2015`: `{"count": 573697}`
  * Distinct queries done in Aug: `GET /1/queries/count/2015-08`: `{"count": 573697}`
  * Distinct queries done on Aug 3rd: `GET /1/queries/count/2015-08-03`: `{"count": 198117}`
  * Distinct queries done on Aug 1st between 00:04:00 and 00:04:59: `GET /1/queries/count/2015-08-01 00:04`: `{"count": 617}`
 
- * Top 3 popular queries done in 2015: `GET /1/queries/popular/2015?size=3`:
-
-```js
-    {
-      "queries": [
-        {"query": "http%3A%2F%2Fwww.getsidekick.com%2Fblog%2Fbody-language-advice", "count": 6675},
-        {"query": "http%3A%2F%2Fwebboard.yenta4.com%2Ftopic%2F568045", "count": 4652},
-        {"query": "http%3A%2F%2Fwebboard.yenta4.com%2Ftopic%2F379035%3Fsort%3D1", "count": 3100}
-      ]
-    }
-```
-
- * Top 5 popular queries done on Aug 2nd: `GET /1/queries/popular/2015-08-02?size=5`:
-
-```js
-    {
-      "queries": [
-        {"query": "http%3A%2F%2Fwww.getsidekick.com%2Fblog%2Fbody-language-advice", "count": 2283},
-        {"query": "http%3A%2F%2Fwebboard.yenta4.com%2Ftopic%2F568045", "count": 1943},
-        {"query": "http%3A%2F%2Fwebboard.yenta4.com%2Ftopic%2F379035%3Fsort%3D1", "count": 1358},
-        {"query": "http%3A%2F%2Fjamonkey.com%2F50-organizing-ideas-for-every-room-in-your-house%2F", "count": 890},
-        {"query": "http%3A%2F%2Fsharingis.cool%2F1000-musicians-played-foo-fighters-learn-to-fly-and-it-was-epic", "count": 701}
-      ]
-    }
-```
-
-### Guidelines
+#### Guidelines
 
 * You can use third party libraries if you know how to re-implement the features they're providing
 * Your application cannot depend on any database or external software (one of the goals being to evaluate your ability to choose the right data structures)
@@ -57,7 +31,7 @@ Build a small application exposing the following endpoints through a REST API:
 * Don't overthink the assignment. Provide a solution that you would be happy to push to production
 * If you have several implementations in mind, pick one and discuss the alternatives in the README of your project
 
-## Evaluation Criteria
+#### Evaluation Criteria
 
 * Please push your code to a GitHub repository or send us an archive
 * Include a Readme helping us run your service
@@ -66,11 +40,48 @@ Build a small application exposing the following endpoints through a REST API:
 
 We'll evaluate:
  
- * the complexity & scalability of your algorithm
- * the readability of your code (including readability of your tests)
- * the correctness of the outputs of the API
- * you're ability to share your design choices and clearly weight pros & cons of alternative solutions
- * the overall quality of your written technical communication 
+ * The complexity & scalability of your algorithm
+ * The readability of your code (including readability of your tests)
+ * The correctness of the outputs of the API
+ * You're ability to share your design choices and clearly weight pros & cons of alternative solutions
+ * The overall quality of your written technical communication
+
+
+### Part 2: System design
+
+Describe briefly how you would build at scale and in the cloud (preferably with GCP) an API to power a simplified page of our Search Analytics:
+
+<img src="analytics-ui-example.png" alt="Simplified UI" width="400"/>
+
+For a given timerange, you must be able to return:
+* The top 1000 top popular searches
+* Their count
+* Their CTR (Click through rate)
+
+The new service(s) must fit in the following architecture:
+
+![Architecture](architecture.png)
+
+Some additional information:
+* The traffic expected is up to 100K searches and 10K click events per day per customer application
+* Each click is tied to a specific search in the log with a `queryID`
+* Click events are accepted by the API if they are reiceved up to 15 minutes after the search
+* Customer may request up to 3 month of timerange in the Analytics
+
+Describe the eventual databases that you would setup and their content, the eventual packaged services you would use, and the different processes you would create. For each logical brick, explain their goal and how do they communicate together.
+
+#### Evaluation Criteria
+
+* Please push it along with your code on GitHub repository or in the archive
+* Include at least a schema with a global overview of your architecture
+* Stay concise (maximum 1 page of text, excluding the eventual diagrams)
+
+We'll evaluate:
+
+ * The complexity & scalability of your architecture
+ * The readability of your document
+ * The document will be used as a base for our discussion during the assignment review where we'll ask follow-up question
+
 
 If you have any question, please out to the recruiter you are in touch with. For the evaluation, we do not take into account the fact that you did or did not ask a question.
 
