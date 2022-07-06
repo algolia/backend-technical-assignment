@@ -43,7 +43,7 @@ We'll evaluate:
  * The complexity & scalability of your algorithm
  * The readability of your code (including readability of your tests)
  * The correctness of the outputs of the API
- * You're ability to share your design choices and clearly weight pros & cons of alternative solutions
+ * Youre ability to share your design choices and clearly weight pros & cons of alternative solutions
  * The overall quality of your written technical communication
 
 
